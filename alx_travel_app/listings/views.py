@@ -1,10 +1,21 @@
-from django.shortcuts import render
+# listings/views.py
 
-# Create your views here.
-# Example:
-# from rest_framework.views import APIView
-# from rest_framework.response import Response
-#
-# class ListingList(APIView):
-#     def get(self, request):
-#         return Response({"message": "Hello from listings!"})
+from rest_framework import viewsets
+from .models import Listing, Booking
+from .serializers import ListingSerializer, BookingSerializer
+
+
+class ListingViewSet(viewsets.ModelViewSet):
+    """
+    A viewset for viewing and editing listing instances.
+    """
+    queryset = Listing.objects.all()
+    serializer_class = ListingSerializer
+
+
+class BookingViewSet(viewsets.ModelViewSet):
+    """
+    A viewset for viewing and editing booking instances.
+    """
+    queryset = Booking.objects.all()
+    serializer_class = BookingSerializer
